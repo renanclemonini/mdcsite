@@ -42,7 +42,7 @@ class Cliente
     public function read()
     {
         try {
-            $sql = "SELECT id, nome, telefone, date_format(aniversario, '%d/%m/%Y') as 'aniversario' FROM clientes";
+            $sql = "SELECT id, nome, telefone, date_format(aniversario, '%d/%m/%Y') as 'aniversario' FROM clientes ORDER BY nome";
             $stmt = $this->conexao->prepare($sql);
             $stmt->execute();
 

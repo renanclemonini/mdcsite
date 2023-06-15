@@ -41,7 +41,6 @@
                     <th class="text-center">Cliente</th>
                     <th class="text-center">Produto</th>
                     <th class="text-center">Qtd</th>
-                    <th class="text-center">Preço Final</th>
                     <th class="text-center">Editar</th>
                     <th class="text-center">Deletar</th>
                 </tr>
@@ -70,9 +69,6 @@
                                 <?php echo $objVendas['qtdVenda']; ?>
                             </td>
                             <td>
-                                <?php echo $objVendas['precoFinal']; ?>
-                            </td>
-                            <td>
                                 <button 
                                     type="button" class="btn"
                                     data-toggle="modal" 
@@ -80,7 +76,9 @@
                                     data-id="<?php echo $objVendas['id']; ?>"
                                     data-dataVenda="<?php echo $objVendas['Data']; ?>"
                                     data-cliente="<?php echo $objVendas['Cliente']; ?>"
-                                    data-produto="<?php echo $objVendas['Produto']; ?>">
+                                    data-produto="<?php echo $objVendas['Produto']; ?>"
+                                    data-quantidade="<?php echo $objVendas['qtdVenda']; ?>"
+                                    >
                                     <img src="./imagens/database_edit.png" alt="editar">
                                 </button> 
                             </td>
@@ -156,11 +154,11 @@
                         </div>
                         <div class="form-group">
                             <label for="qtdVenda">Quantidade:</label>
-                            <input type="number" class="form-control" id="qtdVenda" name="txtQtd">
+                            <input type="number" class="form-control" id="qtdVenda" name="txtQtdVenda">
                         </div>
                         <div class="form-group">
-                            <label for="dataCompra">Data:</label>
-                            <input type="date" class="form-control" id="dataCompra" name="txtData">
+                            <label for="dataVenda">Data:</label>
+                            <input type="date" class="form-control" id="dataVenda" name="txtDataVenda">
                         </div>
                         <div class="formAlign">
                             <button type="submit" class="btn btn-primary">Cadastrar</button>
@@ -197,18 +195,18 @@
                             <input type="text" class="form-control" placeholder="Digite seu nome" id="recipient-cliente" name="txtCliente">
                         </div>
                         <div class="form-group">
-                            <label for="recipient-servico">Serviço:</label>
+                            <label for="recipient-produto">Produto:</label>
                             <input type="hidden" class="form-control" name="idServico" id="recipient-idServico">
-                            <input type="text" class="form-control" placeholder="Digite serviço" id="recipient-servico" name="txtServico">
+                            <input type="text" class="form-control" placeholder="Digite serviço" id="recipient-produto" name="txtProduto">
                         </div> -->
                         <div class="form-group">
-                            <label for="iData">Data:</label>
-                            <!-- <input type="text" class="form-control" id="iData" name="txtData" required> -->
-                            <input type="date" class="form-control" id="iData" name="txtData" required>
+                            <label for="recipient-quantidade">Quantidade:</label>
+                            <input type="text" class="form-control" id="recipient-quantidade" name="txtQtdVenda" required>
                         </div>
                         <div class="form-group">
-                            <label for="iHorario">Horario:</label>
-                            <input type="time" class="form-control" id="iHorario" name="txtHorario">
+                            <label for="recipient-dataVenda">Data:</label>
+                            <!-- <input type="text" class="form-control" id="recipient-dataVenda" name="txtData"> -->
+                            <input type="date" class="form-control" id="recipient-dataVenda" name="txtDataVenda" required>
                         </div>
                         <div class="formAlign">
                             <button type="submit" class="btn btn-primary">Editar</button>
@@ -269,21 +267,16 @@
         $('#myModalEditar').on('show.bs.modal', function(event){
             var button = $(event.relatedTarget);
             var recipientId = button.data('id');
-            var recipientIdCliente = button.data('idCliente');
-            var recipientCliente = button.data('cliente');
-            var recipientIdServico = button.data('idServico');
-            var recipientServico = button.data('servico');
-            var recipientDataAgendamento = button.data('agendamento');
-            var recipientHorarioAgendamento = button.data('horario');
-            
+            // var recipientCliente = button.data('cliente');
+            // var recipientProduto = button.data('produto');
+            var recipientDataVenda = button.data('dataVenda')
+            var recipientQuantidade = button.data('quantidade');
 
             var modal = $(this);
-            modal.find('#recipient-idCliente').val(recipientIdCliente);
-            modal.find('#recipient-cliente').val(recipientCliente);
-            modal.find('#recipient-idServico').val(recipientIdServico);
-            modal.find('#recipient-servico').val(recipientServico);
-            modal.find('#iData').val(recipientDataAgendamento);
-            modal.find('#iHorario').val(recipientHorarioAgendamento);
+            // modal.find('#recipient-cliente').val(recipientCliente);
+            // modal.find('#recipient-produto').val(recipientProduto);
+            modal.find('#recipient-quantidade').val(recipientQuantidade);
+            modal.find('#recipient-dataVenda').val(recipientDataVenda);
             modal.find('#recipient-id').val(recipientId);
         });
     </script>

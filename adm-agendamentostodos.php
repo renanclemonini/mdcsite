@@ -37,10 +37,10 @@
         <table class="table table-striped text-center">
             <thead>
                 <tr>
-                    <th class="text-center">ID</th>
+                    <!-- <th class="text-center">ID</th> -->
+                    <th class="text-center">Data</th>
                     <th class="text-center">Cliente</th>
                     <th class="text-center">Serviço</th>
-                    <th class="text-center">Data</th>
                     <th class="text-center">Horário</th>
                     <th class="text-center">Editar</th>
                     <th class="text-center">Deletar</th>
@@ -62,17 +62,17 @@
                     while ($objAgendamentos = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                         <tr>
+                            <!-- <td>
+                                <?php #echo $objAgendamentos['id']; ?>
+                            </td> -->
                             <td>
-                                <?php echo $objAgendamentos['id']; ?>
+                                <?php echo $objAgendamentos['Data']; ?>
                             </td>
                             <td>
                                 <?php echo $objAgendamentos['Cliente']; ?>
                             </td>
                             <td>
                                 <?php echo $objAgendamentos['Servico']; ?>
-                            </td>
-                            <td>
-                                <?php echo $objAgendamentos['Data']; ?>
                             </td>
                             <td>
                                 <?php echo $objAgendamentos['Horario']; ?>

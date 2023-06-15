@@ -39,7 +39,6 @@ create table vendas(
     idCliente int not null,
     idProduto int not null,
     qtdVenda int not null,
-    precoFinal double not null,
     dataVenda date not null,
     primary key(id),
     constraint fk_vendas_cliente foreign key(idCliente) references clientes(id),

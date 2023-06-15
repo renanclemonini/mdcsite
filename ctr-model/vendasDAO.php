@@ -28,7 +28,7 @@
 
         public function readAll(){
             try {
-                $sql = "SELECT v.id, date_format(v.dataVenda, '%d/%m/%Y') as 'Data', cli.nome as 'Cliente', pro.nome as 'Produto', v.qtdVenda, v.precoFinal
+                $sql = "SELECT v.id, date_format(v.dataVenda, '%d/%m/%Y') as 'Data', cli.nome as 'Cliente', pro.nome as 'Produto', v.qtdVenda
                 FROM vendas v 
                 INNER JOIN clientes cli ON v.idCliente = cli.id
                 INNER JOIN produtos pro ON v.idProduto = pro.id ORDER BY v.dataVenda";
@@ -41,14 +41,13 @@
             }
         }
 
-        public function insert($idCliente, $idProduto, $qtdVenda, $precoFinal, $dataVenda){
+        public function insert($idCliente, $idProduto, $qtdVenda, $dataVenda){
             try{
-                $sql = "INSERT INTO vendas (idCliente, idProduto, qtdVenda, precoFinal, dataVenda) values (:idCliente, :idProduto, :qtdVenda, :precoFinal, :dataVenda)";
+                $sql = "INSERT INTO vendas (idCliente, idProduto, qtdVenda, dataVenda) values (:idCliente, :idProduto, :qtdVenda, :dataVenda)";
                 $stmt = $this->connexao->prepare($sql);
                 $stmt->bindParam(':idCliente', $idCliente);
                 $stmt->bindParam(':idProduto', $idProduto);
-                $stmt->bindParam(':agendamentoData', $qtdVenda);
-                $stmt->bindParam(':precoFinal', $precoFinal);
+                $stmt->bindParam(':qtdVenda', $qtdVenda);
                 $stmt->bindParam(':dataVenda', $dataVenda);
                 $stmt->execute();
 
@@ -58,16 +57,14 @@
             }
         }
 
-        public function update($idCliente, $idProduto, $qtdVenda, $precoFinal, $dataVenda, $id){
+        public function update($qtdVenda, $dataVenda, $id){
+            // idCliente = :idCliente, idProduto = :idProduto, , dataVenda = :dataVenda 
+            // $stmt->bindParam(':idCliente', $idCliente);
+            // $stmt->bindParam(':idProduto', $idProduto);
             try {
-                $sql = "UPDATE vendas set idCliente = :idCliente, idProduto = :idProduto, qtdVenda = :qtdVenda,
-                precoFinal = :precoFinal, dataVenda = :dataVenda where id = :id";
-
+                $sql = "UPDATE vendas set qtdVenda = :qtdVenda, dataVenda = :dataVenda where id = :id";
                 $stmt = $this->connexao->prepare($sql);
-                $stmt->bindParam(':idCliente', $idCliente);
-                $stmt->bindParam(':idProduto', $idProduto);
                 $stmt->bindParam(':qtdVenda', $qtdVenda);
-                $stmt->bindParam(':precoFinal', $precoFinal);
                 $stmt->bindParam(':dataVenda', $dataVenda);
                 $stmt->bindParam(':id', $id);
                 $stmt->execute();
